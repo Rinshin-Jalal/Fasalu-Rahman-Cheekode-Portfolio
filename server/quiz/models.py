@@ -16,7 +16,6 @@ def unique_slug_generator(instance, new_slug = None):
         slug = new_slug 
     else: 
         slug = slugify(instance.title+"_"+random_string_generator(size=12)) 
-        # print(f"length {len(slug)}")
     Klass = instance.__class__ 
     qs_exists = Klass.objects.filter(slug = slug).exists() 
     if qs_exists: 
@@ -57,10 +56,6 @@ class Updated(models.Model):
     class Meta:
         abstract = True
 
-
-
-
-
 class Question(Updated):
 
     class Meta:
@@ -68,29 +63,14 @@ class Question(Updated):
         verbose_name_plural = _("Questions")
         ordering = ['id']
 
-    SCALE = (
-        (0, _('Fundamental')),
-        (1, _('Beginner')),
-        (2, _('Intermediate')),
-        (3, _('Advanced')),
-        (4, _('Expert'))
-    )
 
-    TYPE = (
-        (0, _('Multiple Choice')),
-    )
+
 
     quiz = models.ForeignKey(
         Quizzes, related_name='question', on_delete=models.CASCADE)
-    technique = models.IntegerField(
-        choices=TYPE, default=0, verbose_name=_("Type of Question"))
     title = models.CharField(max_length=255, verbose_name=_("Title"))
-    difficulty = models.IntegerField(
-        choices=SCALE, default=0, verbose_name=_("Difficulty"))
     date_created = models.DateTimeField(
         auto_now_add=True, verbose_name=_("Date Created"))
-    is_active = models.BooleanField(
-        default=False, verbose_name=_("Active Status"))
     image = models.ImageField(blank=True,null=True)
 
     def __str__(self):

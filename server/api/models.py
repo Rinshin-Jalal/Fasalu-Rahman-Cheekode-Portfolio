@@ -9,22 +9,19 @@ from django.core.mail import send_mail
 from io import BytesIO
 from PIL import Image
 from django.core.files import File
+import string 
+import random 
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 
 def compress(image):
     im = Image.open(image).convert('RGB')
-    # create a BytesIO object
     im_io = BytesIO() 
-    # save image to BytesIO object
     im.save(im_io, 'JPEG', quality=70) 
-    # create a django-friendly Files object
     new_image = File(im_io, name=image.name)
     return new_image
 
-import string 
-# from django.utils.text import slugify 
-import random 
-  
 def random_string_generator(size = 10, chars = string.ascii_lowercase + string.digits): 
     return ''.join(random.choice(chars) for _ in range(size)) 
   
@@ -34,16 +31,17 @@ def unique_slug_generator(instance, new_slug = None):
         slug = new_slug 
     else: 
         slug = slugify(instance.title+"_"+random_string_generator(size=12)) 
-        # print(f"length {len(slug)}")
     Klass = instance.__class__ 
     qs_exists = Klass.objects.filter(slug = slug).exists() 
     if qs_exists: 
         new_slug = "{slug}-{randstr}".format( 
             slug = slug, randstr = random_string_generator(size = 4)) 
-        print(new_slug)
-              
         return unique_slug_generator(instance, new_slug = new_slug) 
     return slug 
+
+
+
+
 
 class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
@@ -51,7 +49,6 @@ class Post(models.Model):
     body = models.TextField(blank=False,null=False, default='')
     slug = models.SlugField(null=True, blank=True,max_length=1500)
     image = models.ImageField(blank=False)
-    # cropping = ImageRatioField('image', '1280x720')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     notify_users = models.BooleanField(default=True)
     notify_users_timestamp = models.DateTimeField(
@@ -65,18 +62,11 @@ class Post(models.Model):
     class Meta:
         ordering = ['created']
 
-# @receiver(post_save, sender=Post)
-# def post_post_save(sender, instance, *args, **kwargs):
     def save(self,*args,**kwargs):
         super().save(*args,**kwargs)
         if self.notify_users:
-        # emails = Email.objects.all()
-            print("sending")
-
             if Email.objects.exists():
-                print("senddds")
                 for email in Email.objects.all():
-                    print(f"notify users ,Send Mail to {email.name}")
                     subject = f'Important Blog : {self.title} by Fasal Cheekode'
                     body = self.body[slice(50)]
                     message = f'Hi {email.name},\nHere is The shorten Content of the Alert Blog:\n{body}.....\n\n Checkout This Blog:http://localhost:3000/posts/{self.slug} \n\nBy Fasal Cheekode Creative Corner'
@@ -87,33 +77,14 @@ class Post(models.Model):
                         [email.email],
                         fail_silently=False,
                     )
-                    print('finish')
                     self.notify_users = False
                     self.notify_users_timestamp = timezone.now()
                     self.save()
             super().save(*args, **kwargs)
 
-
-
-
-class Comment(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    body = models.TextField(blank=False)
-    owner = models.ForeignKey(
-        'auth.User', related_name='comments', on_delete=models.CASCADE)
-    post = models.ForeignKey(
-        Post, related_name='comments', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.body
-
-    class Meta:
-        ordering = ['created']
-
 class WImage(models.Model):
     image = models.ImageField(blank=False,upload_to="postimages/")
     name = models.CharField(max_length=123,null=True,blank=True)
-    # id = models.BigAutoField(primary_key=True)
     def __str__(self):
         return str(self.uploaded_at)+self.name
     def save(self,*args,**kwargs):
@@ -140,7 +111,6 @@ class ContactForm(models.Model):
         super().save(*args, **kwargs)
 
 
-from phonenumber_field.modelfields import PhoneNumberField
 
 class Email(models.Model):
     name = models.CharField(max_length=1000,null=True,blank=False)
@@ -162,9 +132,7 @@ class Gallery(models.Model):
     def __str__(self):
         return f'{self.desc}'
     def save(self, *args, **kwargs):
-        # call the compress function
         new_image_1 = compress(self.image_1)
-        # set self.image to new_image
         self.image_1 = new_image_1
         if self.image_2:
             new_image_2 = compress(self.image_2)
@@ -175,7 +143,6 @@ class Gallery(models.Model):
         if self.image_2:
             new_image_4 = compress(self.image_4)
             self.image_4 = new_image_4
-        # save
         super().save(*args, **kwargs)
 
 
@@ -188,34 +155,12 @@ class AwardGallery(models.Model):
     def __str__(self):
         return f'{self.award_name} got on {str(self.date)}'
     def save(self, *args, **kwargs):
-        # call the compress function
         new_image = compress(self.image)
-        # set self.image to new_image
-        # save
         super().save(*args, **kwargs)
+
+
 
 @receiver(pre_save, sender=Post)
 def post_pre_save(sender, instance, *args, **kwargs):
     if not instance.slug: 
        instance.slug = unique_slug_generator(instance)
-    # if instance.notify_users:
-    #     # emails = Email.objects.all()
-    #     print("sending")
-    #     if Email.objects.exists():
-    #         print("senddds")
-    #         for email in Email.objects.all():
-    #             print(f"notify users ,Send Mail to {email.name}")
-    #             subject = f'Important Blog : {instance.title} by Fasal Cheekode'
-    #             body = instance.body[slice(50)]
-    #             message = f'Hi {email.name},\nHere is The shorten Content of the Alert Blog:\n{body}.....\n\n Checkout This Blog:http://localhost:3000/posts/{instance.slug} \n\nBy Fasal Cheekode Creative Corner'
-    #             send_mail(
-    #                 subject,
-    #                 message,
-    #                 'rinzcodemail@gmail.com',
-    #                 [email.email],
-    #                 fail_silently=False,
-    #             )
-    #             print('finish')
-    #             instance.notify_users = False
-    #             instance.notify_users_timestamp = timezone.now()
-    #             # instance.save()

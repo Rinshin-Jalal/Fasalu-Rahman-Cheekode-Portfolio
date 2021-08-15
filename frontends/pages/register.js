@@ -1,20 +1,17 @@
 import Link from 'next/link';
 import axios from 'axios'
-//import Login from '../comps/login';
 import { useRouter } from 'next/router'
 import { UserContext } from '../contexts/userContext.js'
-import React, { useState, useContext,useEffect } from 'react';
-import {tokenRequest,logoutUser} from '../api/auth.js'
+import React, { useState, useContext } from 'react';
 import LogoutPopup from '../comps/Logoutpopup.js';
 
 
 
 export default function Login() {
-  const {user, setUser, isUserLoggedIn} = useContext(UserContext)
+  const { setUser, isUserLoggedIn} = useContext(UserContext)
   const ACCESS_TOKEN = 'access_token'
   const REFRESH_TOKEN = 'refresh_token'
   const router = useRouter()
-  //console.log(isUserLoggedIn)
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [cpassword, setCPassword] = useState("")
@@ -64,7 +61,6 @@ export default function Login() {
       body: JSON.stringify({"username": username, 'email':email ,'password':password})
       }).then(res => res.json())
         .then(res => {
-          console.log('here now')
             loginUser(username, password).then((data)=>{
               setUser({username: username});
               router.push('/');
@@ -91,11 +87,6 @@ export default function Login() {
         return false
       }
     return true;
-  }
-  // eslint-disable-next-line no-unused-vars
-  const logout = () => {
-    logoutUser()
-    setUser(null);
   }
   return (
 
@@ -154,5 +145,3 @@ export default function Login() {
 
   )
 }
-
-{/*  */}

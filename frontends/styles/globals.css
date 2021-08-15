@@ -1,9 +1,9 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 :root {
-  --primary-color: #61FFBD;
-  --secondary-color:#00f7ff;
-  --third-color:#00ff95;
+  --primary-color: #61ffbd;
+  --secondary-color: #00f7ff;
+  --third-color: #00ff95;
 }
 
 body {
@@ -16,7 +16,8 @@ body {
   margin-top: 70px;
 }
 
-a, a:visited {
+a,
+a:visited {
   text-decoration: none;
   color: inherit;
 }
@@ -47,7 +48,7 @@ a, a:visited {
 }
 
 .popup-box .close-icon {
-  content: 'x';
+  content: "x";
   cursor: pointer;
   position: fixed;
   right: calc(15% - 35px);
@@ -73,7 +74,7 @@ a, a:visited {
   border: 2px solid var(--primary-color);
   font-weight: bold;
   border-radius: 5em;
-  margin-top: -.2em;
+  margin-top: -0.2em;
   -webkit-box-shadow: 1px 1px 9px rgba(119, 119, 119, 0.42);
           box-shadow: 1px 1px 9px rgba(119, 119, 119, 0.42);
   -webkit-transition: 1s;
@@ -97,33 +98,12 @@ p.styled-head::after {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  content: '';
+  content: "";
   background-image: url("curve.svg");
   background-size: 108px 19px;
   height: 19px;
   width: 108px;
   position: relative;
-}
-
-p.about-styled {
-  width: 100px;
-  height: 40px;
-}
-
-p.about-styled::after {
-  right: 0px;
-  bottom: 20px;
-}
-
-p.contact-styled {
-  margin-bottom: 80px;
-  width: 130px;
-  height: 40px;
-}
-
-p.contact-styled::after {
-  right: 0px;
-  bottom: 20px;
 }
 
 .footer {
@@ -147,6 +127,10 @@ p.contact-styled::after {
 
 .footer h1 {
   font-size: 20px;
+}
+
+nav {
+  display: none;
 }
 
 .navbar {
@@ -207,7 +191,7 @@ p.contact-styled::after {
   color: var(--primary-color);
   text-decoration: none;
   list-style: none;
-  padding: .5em;
+  padding: 0.5em;
   display: block;
   text-align: right;
   font-weight: 500;
@@ -221,7 +205,7 @@ p.contact-styled::after {
 
 .navbar .container nav.opened .mobile-menu-exit {
   float: right;
-  margin: .5em;
+  margin: 0.5em;
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -265,10 +249,8 @@ p.contact-styled::after {
   font-weight: bold;
   font-size: 20px;
   line-height: 170%;
-  /* or 34px */
   letter-spacing: 0.085em;
   color: var(--primary-color);
-  /* Inside Auto Layout */
   -webkit-box-flex: 0;
       -ms-flex: none;
           flex: none;
@@ -286,7 +268,8 @@ p.contact-styled::after {
     margin: 0;
     padding: 0;
   }
-  .mobile-menu-wrapper, .mobile-menu-exit {
+  .mobile-menu-wrapper,
+  .mobile-menu-exit {
     display: none;
   }
   .navbar .container {
@@ -321,10 +304,11 @@ p.contact-styled::after {
   }
   a {
     font-size: 20px;
-    padding: .1em 1em;
+    padding: 0.1em 1em;
     text-decoration: none;
   }
-  ul.primary-nav, ul.secondary-nav {
+  ul.primary-nav,
+  ul.secondary-nav {
     margin: 0;
   }
   li a:hover {
@@ -336,7 +320,7 @@ p.contact-styled::after {
     border: 2px solid var(--primary-color);
     font-weight: bold;
     border-radius: 5em;
-    margin-top: -.2em;
+    margin-top: -0.2em;
     -webkit-box-shadow: 1px 1px 9px rgba(119, 119, 119, 0.42);
             box-shadow: 1px 1px 9px rgba(119, 119, 119, 0.42);
     -webkit-transition: 1s;
@@ -470,14 +454,15 @@ p.contact-styled::after {
   margin-right: 5px;
 }
 
-.home section.hero .container .social-btns .social-btn a, .home section.hero .container .social-btns .social-btn a:visited {
+.home section.hero .container .social-btns .social-btn a,
+.home section.hero .container .social-btns .social-btn a:visited {
   text-decoration: none;
   color: white;
 }
 
 .home section.about {
   height: 688px;
-  background: #1B1B1B;
+  background: #1b1b1b;
   text-align: center;
   margin: 0;
   padding: 20px 24px;
@@ -497,6 +482,16 @@ p.contact-styled::after {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.home section.about .l-col p.about-styled {
+  width: 100px;
+  height: 40px;
+}
+
+.home section.about .l-col p.about-styled::after {
+  right: 0px;
+  bottom: 20px;
 }
 
 .home section.about .desc {
@@ -534,6 +529,17 @@ p.contact-styled::after {
   margin-bottom: 80px;
 }
 
+.home section.contact .cont-l p.contact-styled {
+  margin-bottom: 80px;
+  width: 130px;
+  height: 40px;
+}
+
+.home section.contact .cont-l p.contact-styled::after {
+  right: 0px;
+  bottom: 20px;
+}
+
 .home section.contact .cont-l .phone {
   width: 90%;
   height: 40px;
@@ -561,7 +567,6 @@ p.contact-styled::after {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
 }
@@ -570,7 +575,6 @@ p.contact-styled::after {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
 }
@@ -579,7 +583,6 @@ p.contact-styled::after {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
 }
@@ -588,7 +591,6 @@ p.contact-styled::after {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
 }
@@ -599,7 +601,8 @@ p.contact-styled::after {
   border: 1px solid var(--primary-color);
 }
 
-.home section.contact .cont-l input[type="text"], .home section.contact .cont-l textarea {
+.home section.contact .cont-l input[type="text"],
+.home section.contact .cont-l textarea {
   display: block;
   width: 90%;
   height: 40px;
@@ -615,43 +618,44 @@ p.contact-styled::after {
   outline: none;
 }
 
-.home section.contact .cont-l input[type="text"]::-webkit-input-placeholder, .home section.contact .cont-l textarea::-webkit-input-placeholder {
+.home section.contact .cont-l input[type="text"]::-webkit-input-placeholder,
+.home section.contact .cont-l textarea::-webkit-input-placeholder {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
 }
 
-.home section.contact .cont-l input[type="text"]:-ms-input-placeholder, .home section.contact .cont-l textarea:-ms-input-placeholder {
+.home section.contact .cont-l input[type="text"]:-ms-input-placeholder,
+.home section.contact .cont-l textarea:-ms-input-placeholder {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
 }
 
-.home section.contact .cont-l input[type="text"]::-ms-input-placeholder, .home section.contact .cont-l textarea::-ms-input-placeholder {
+.home section.contact .cont-l input[type="text"]::-ms-input-placeholder,
+.home section.contact .cont-l textarea::-ms-input-placeholder {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
 }
 
-.home section.contact .cont-l input[type="text"]::placeholder, .home section.contact .cont-l textarea::placeholder {
+.home section.contact .cont-l input[type="text"]::placeholder,
+.home section.contact .cont-l textarea::placeholder {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
 }
 
-.home section.contact .cont-l input[type="text"]:focus, .home section.contact .cont-l textarea:focus {
+.home section.contact .cont-l input[type="text"]:focus,
+.home section.contact .cont-l textarea:focus {
   background: #000000;
   border-radius: 20px;
   border: 1px solid var(--primary-color);
@@ -676,7 +680,6 @@ p.contact-styled::after {
   font-weight: normal;
   font-size: 22px;
   line-height: 33px;
-  /* identical to box height */
   letter-spacing: 0.305em;
   text-align: center;
   margin-top: 30px;
@@ -694,10 +697,6 @@ p.contact-styled::after {
   height: 297px;
   border-radius: 41px;
   border: 3px solid var(--primary-color);
-}
-
-nav {
-  display: none;
 }
 
 @media screen and (min-width: 1080px) {
@@ -788,7 +787,7 @@ nav {
   }
   .home section.contact {
     height: 680px !important;
-    background: #0F0F0F;
+    background: #0f0f0f;
   }
   .home section.contact .container {
     display: -ms-grid;
@@ -822,7 +821,8 @@ nav {
     border: none;
     font-size: 20px;
   }
-  .home section.contact .container .cont-l input[type="text"], .home section.contact .container .cont-l textarea {
+  .home section.contact .container .cont-l input[type="text"],
+  .home section.contact .container .cont-l textarea {
     width: 510px;
     height: 40px;
   }
@@ -860,7 +860,7 @@ nav {
   margin-top: 30px;
   text-align: center;
   letter-spacing: 0.16em;
-  font-family: 'poppins';
+  font-family: "poppins";
 }
 
 .blog h1.allposts {
@@ -935,7 +935,8 @@ nav {
     font-size: 64px;
     margin-bottom: 110px;
   }
-  .blog p.blog-styled a, .blog p.blog-styled a:visited {
+  .blog p.blog-styled a,
+  .blog p.blog-styled a:visited {
     color: var(--primary-color) !important;
     font-size: 20px !important;
   }
@@ -1078,7 +1079,7 @@ nav {
 }
 
 .blog-view .line1 {
-  border: .5px solid #FFFFFF;
+  border: 0.5px solid #ffffff;
   margin-top: 100px;
   margin-bottom: 30px;
 }
@@ -1191,7 +1192,6 @@ nav {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
   position: relative;
@@ -1202,7 +1202,6 @@ nav {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
   position: relative;
@@ -1213,7 +1212,6 @@ nav {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
   position: relative;
@@ -1224,7 +1222,6 @@ nav {
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
-  /* identical to box height */
   letter-spacing: 0.615em;
   color: var(--primary-color);
   position: relative;
@@ -1252,7 +1249,8 @@ nav {
   font-size: 27px;
 }
 
-.lr .lr-box input[type="submit"], .lr .lr-box button {
+.lr .lr-box input[type="submit"],
+.lr .lr-box button {
   width: 111px;
   background: #000;
   border: 1px solid var(--primary-color);
@@ -1265,13 +1263,13 @@ nav {
   font-weight: normal;
   font-size: 19px;
   line-height: 33px;
-  /* identical to box height */
   font-weight: bold;
   margin: 0 auto;
   padding: 0;
 }
 
-.lr .lr-box input[type="submit"]:hover, .lr .lr-box button:hover {
+.lr .lr-box input[type="submit"]:hover,
+.lr .lr-box button:hover {
   cursor: pointer;
   background: var(--primary-color);
   color: black;
@@ -1614,7 +1612,8 @@ nav {
           box-sizing: border-box;
 }
 
-.ceadmin input, .ceadmin button {
+.ceadmin input,
+.ceadmin button {
   width: 100%;
   margin: 20px auto;
   color: var(--secondary-color);
@@ -1627,7 +1626,8 @@ nav {
   font-size: 20px;
 }
 
-.ceadmin #notifyuser, .ceadmin #post-image {
+.ceadmin #notifyuser,
+.ceadmin #post-image {
   display: none;
 }
 
@@ -1649,7 +1649,6 @@ nav {
 }
 
 .ceadmin .toggle-2 {
-  /* for removing browser css */
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
   display: block;
@@ -1775,7 +1774,7 @@ nav {
 .markdown-body h6:hover .anchor .octicon-link:before {
   width: 16px;
   height: 16px;
-  content: ' ';
+  content: " ";
   display: inline-block;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath fill-rule='evenodd' d='M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z'%3E%3C/path%3E%3C/svg%3E");
 }
@@ -1784,7 +1783,7 @@ nav {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
@@ -1814,13 +1813,13 @@ nav {
 
 .markdown-body h1 {
   font-size: 2em;
-  margin: .67em 0;
+  margin: 0.67em 0;
 }
 
 .markdown-body code,
 .markdown-body kbd,
 .markdown-body pre {
-  font-family: monospace,monospace;
+  font-family: monospace, monospace;
   font-size: 1em;
 }
 
@@ -1840,7 +1839,7 @@ nav {
   overflow: visible;
 }
 
-.markdown-body [type=checkbox] {
+.markdown-body [type="checkbox"] {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0;
@@ -1906,7 +1905,7 @@ nav {
 .markdown-body kbd {
   display: inline-block;
   padding: 3px 5px;
-  font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   line-height: 10px;
   color: #444d56;
   vertical-align: middle;
@@ -2002,7 +2001,7 @@ nav {
 
 .markdown-body code,
 .markdown-body pre {
-  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   font-size: 12px;
   color: #00f7ff;
   font-weight: bold;
@@ -2323,7 +2322,7 @@ nav {
 .markdown-body kbd {
   display: inline-block;
   padding: 3px 5px;
-  font: 11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   line-height: 10px;
   color: #444d56;
   vertical-align: middle;
@@ -2370,7 +2369,7 @@ nav {
 }
 
 .markdown-body hr {
-  height: .25em;
+  height: 0.25em;
   padding: 0;
   margin: 24px 0;
   background-color: #e1e4e8;
@@ -2380,7 +2379,7 @@ nav {
 .markdown-body blockquote {
   padding: 0 1em;
   color: #6a737d;
-  border-left: .25em solid #dfe2e5;
+  border-left: 0.25em solid #dfe2e5;
 }
 
 .markdown-body blockquote > :first-child {
@@ -2409,7 +2408,7 @@ nav {
 
 .markdown-body h1,
 .markdown-body h2 {
-  padding-bottom: .3em;
+  padding-bottom: 0.3em;
   border-bottom: 1px solid #eaecef;
 }
 
@@ -2426,11 +2425,11 @@ nav {
 }
 
 .markdown-body h5 {
-  font-size: .875em;
+  font-size: 0.875em;
 }
 
 .markdown-body h6 {
-  font-size: .85em;
+  font-size: 0.85em;
   color: #6a737d;
 }
 
@@ -2457,7 +2456,7 @@ nav {
 }
 
 .markdown-body li + li {
-  margin-top: .25em;
+  margin-top: 0.25em;
 }
 
 .markdown-body dl {
@@ -2508,19 +2507,19 @@ nav {
           box-sizing: initial;
   background-color: #fff;
   border: 2px solid var(--primary-color);
-  border-radius: .7em;
+  border-radius: 0.7em;
 }
 
-.markdown-body img[align=right] {
+.markdown-body img[align="right"] {
   padding-left: 20px;
 }
 
-.markdown-body img[align=left] {
+.markdown-body img[align="left"] {
   padding-right: 20px;
 }
 
 .markdown-body code {
-  padding: .2em .4em;
+  padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
   background-color: rgba(27, 31, 35, 0.05);
@@ -2556,7 +2555,7 @@ nav {
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
   border-radius: 3px;
 }
 
@@ -2574,7 +2573,7 @@ nav {
 
 .markdown-body .commit-tease-sha {
   display: inline-block;
-  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   font-size: 90%;
   color: #444d56;
 }
@@ -2599,7 +2598,7 @@ nav {
   min-width: 50px;
   padding-right: 10px;
   padding-left: 10px;
-  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   font-size: 12px;
   line-height: 20px;
   color: rgba(27, 31, 35, 0.3);
@@ -2631,7 +2630,7 @@ nav {
 
 .markdown-body .blob-code-inner {
   overflow: visible;
-  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
   font-size: 12px;
   color: #24292e;
   word-wrap: normal;
@@ -2725,7 +2724,7 @@ nav {
 }
 
 .markdown-body .task-list-item input {
-  margin: 0 .2em .25em -1.6em;
+  margin: 0 0.2em 0.25em -1.6em;
   vertical-align: middle;
 }
 /*# sourceMappingURL=globals.css.map */

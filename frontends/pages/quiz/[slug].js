@@ -1,15 +1,8 @@
-// import React, { useState } from 'react';
-// import 'github-markdown-css'
-// import Metadata from '../../comps/Metadata';
-// import Image from 'next/image'
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import { UserContext } from '../../contexts/userContext.js'
 import { useContext } from 'react'
 import Link from "next/link"
 import ErrorPage from 'next/error'
-// import ScorePopup from '../../comps/ScorePopup.js';
-// import { authRequest } from '../../api/auth.js';
-
 
 const BASE_URL = 'http://127.0.0.1:8000';
 
@@ -59,43 +52,37 @@ export default function App({quiz,status}) {
     }
   }
   const handleAnswerOptionClick = (isRight) => {
-    console.log(false)
-    console.log(isRight)
+
     let newscore = score
+
     if (isRight) {
 
       newscore++
       setScore(newscore);
 
-
-      console.log("newscore:",newscore)
     }
 
-    console.log(score)
     const nextQuestion = currentQuestion + 1;
-    // console.log("r:",score)
+
     if (nextQuestion < quiz.length) {
       setCurrentQuestion(nextQuestion);
     } else {
-      console.log(score)
 
       setShowScore(true);
       
       let form_data = new FormData();
       form_data.append('score',newscore);
-      console.log("quiz",quiz?.[0]?.quiz)
+
       form_data.append("quiz",quiz?.[0]?.quiz)
       form_data.append("user",user.username);
-      // console.log(score)
-        // console.log(`Bearer ${window.localStorage.getItem('access_token')}`)
+
         authRequest.post('/quiz/score/',form_data,{
-          timeout:12000,  /// Is the main
+          timeout:12000,  
           headers: {
               'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
           }
       })
           .then(res => {
-            console.log(res.data)
             window.localStorage.setItem("score",JSON.stringify({quiz:quiz?.[0]?.quiz,score:res.data.score,user:user.username}))
           })
           .catch(err => {
