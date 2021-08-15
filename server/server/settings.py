@@ -11,7 +11,7 @@ import os
 # IMPORTANT STUFF BELOW!!!!!
 # IMPORTANT STUFF BELOW!!!!!
 
-
+import django_heroku
 import environ
 # Initialise environment variables
 env = environ.Env()
@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
-    'public.apps.PublicConfig',
     'api.apps.ApiConfig',
     'quiz.apps.QuizConfig',
     'phonenumber_field',
@@ -102,6 +101,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -184,7 +184,7 @@ STATIC_URL = '/static/'
 # Cors Settings
 CORS_ALLOW_CREDENTIALS = True
 
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # NOTE:
@@ -205,3 +205,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = env("SECRET_MAIL")
 EMAIL_HOST_PASSWORD = env("SECRET_MAIL_PASSWORD")
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+django_heroku.settings(locals())
