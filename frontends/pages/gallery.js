@@ -2,7 +2,7 @@ import { authRequest } from "../api/auth";
 import  Image  from "next/image";
 
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'https://fasalcheekodeserver.herokuapp.com';
 
 export const getStaticProps = async () => {
     const res = await fetch(`${BASE_URL}/gallery/`);
@@ -33,9 +33,6 @@ const DateRenderer = ({date}) =>{
 }
 
 const Gallery = ({galleries,awards}) => {
-    // let date = new Date(galleries[0].uploaded_at)
-
-    console.log(galleries)
     return ( 
         <div className="gallery">
 

@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import Link from "next/link"
 import ErrorPage from 'next/error'
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'https://fasalcheekodeserver.herokuapp.com';
 
 export const getStaticPaths = async () =>{
     const res = await fetch(`${BASE_URL}/quiz/`);
@@ -17,7 +17,7 @@ export const getStaticPaths = async () =>{
 
     return {
         paths,
-        fallback:true,
+        fallback:false,
     }
 }
 export const getStaticProps = async ({params}) => {

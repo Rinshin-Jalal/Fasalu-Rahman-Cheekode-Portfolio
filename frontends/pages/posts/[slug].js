@@ -12,7 +12,7 @@ import {  useContext } from 'react';
 
 
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'https://fasalcheekodeserver.herokuapp.com';
 
 export const getStaticPaths = async () =>{
     const res = await fetch(`${BASE_URL}/posts/`);
@@ -25,7 +25,7 @@ export const getStaticPaths = async () =>{
 
     return {
         paths,
-        fallback:true,
+        fallback:false,
     }
 }
 export const getStaticProps = async ({params}) => {
@@ -48,7 +48,7 @@ export const getStaticProps = async ({params}) => {
 const Details = ({ post,posts,status })=>{
     if(status == 404 ) return <ErrorPage statusCode={404}/>
     const {isUserLoggedIn,user,} = useContext(UserContext)
-    console.log(post)
+
     return (
      <div className="blog-view">
         <Metadata title={`${post?.title} | Fasal Cheekode Creative Corner`}  description={` ${post?.body?.[100]}....`}/>

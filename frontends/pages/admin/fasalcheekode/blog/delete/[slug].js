@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import Link from 'next/link'
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'https://fasalcheekodeserver.herokuapp.com';
 
 export const getStaticPaths = async () =>{
     const res = await fetch(`${BASE_URL}/posts/`);
@@ -19,15 +19,13 @@ export const getStaticPaths = async () =>{
 
     return {
         paths,
-        fallback:true,
+        fallback:false,
     }
 }
 export const getStaticProps = async ({params}) => {
     const slug = params.slug;
-    console.log(slug)
     const res = await fetch(`${BASE_URL}/posts/${slug}/`);
     const data = await res.json();
-    console.log(data)
     return {
         props: { post: data },
        revalidate:10
@@ -44,7 +42,6 @@ const Details = ({ post,status })=>{
         e.preventDefault();
         authRequest.delete(`/posts/${post?.slug}/`)
         .then(res => {
-              console.log(res.data);
               let slug = res.data.slug
               setDeleted(true)  
             })
@@ -82,7 +79,7 @@ const Details = ({ post,status })=>{
                                         
                                         href="/"
                                     >
-                                        <a className="button">Back Home🏠</a>
+                                        <button className="button">Back Home🏠</button>
                                     </Link>
                         </form>
                     </div> 

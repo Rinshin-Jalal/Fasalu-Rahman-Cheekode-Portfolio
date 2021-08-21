@@ -1,21 +1,14 @@
 import {BASE_URL} from '../api/auth';
-import Image from 'next/image';
 import { useState } from 'react';
 import Link from "next/link";
 import {UserContext} from "../contexts/userContext";
 import {useContext} from "react";
-import ErrorPage from "next/error";
-import menuIcon from '@iconify/icons-majesticons/menu';
 import closeFill from '@iconify/icons-eva/close-fill';
+import menuIcon from '@iconify-icons/majesticons/menu';
 import { Icon, InlineIcon } from '@iconify/react';
 import LogoutPopup from './Logoutpopup';
 
 
-
-
-const myLoader = ({src}) => {
-  return src
-}
 
 const Navbar = () => {
     

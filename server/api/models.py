@@ -86,7 +86,7 @@ class WImage(models.Model):
     image = models.ImageField(blank=False,upload_to="postimages/")
     name = models.CharField(max_length=123,null=True,blank=True)
     def __str__(self):
-        return str(self.uploaded_at)+self.name
+        return self.name
     def save(self,*args,**kwargs):
         newimage = compress(self.image)
         self.image = newimage
@@ -97,7 +97,7 @@ class ContactForm(models.Model):
     no = models.CharField(max_length=123,null=True,blank=True)
     message = models.CharField(max_length=10000,null=True,blank=True)
     def __str__(self):
-        return str(self.uploaded_at)+self.name
+        return self.name + "|" + self.no
     def save(self,*args,**kwargs):
         subject = f"Message from {self.name}."
         body = f"Message from {self.name}\nGiven Phone Number: {self.no}\n{self.message}"

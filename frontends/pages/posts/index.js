@@ -7,19 +7,18 @@ import Image from 'next/image';
 
 
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'https://fasalcheekodeserver.herokuapp.com';
 
 export const getStaticProps = async () => {
     const res = await fetch(`${BASE_URL}/posts/`);
     const data = await res.json();
     return {
         props: { posts:  data},
-        revalidate:10
+        revalidate:1
     }
 }
 
 function Post({posts}) {
-    console.log(posts)
     const {isUserLoggedIn,user,} = useContext(UserContext)
   return (
     <div className="blog">

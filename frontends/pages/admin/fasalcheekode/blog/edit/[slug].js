@@ -7,7 +7,7 @@ import MarkdownIt from 'markdown-it';
 import 'react-markdown-editor-lite/lib/index.css'
 import ErrorPage from 'next/error';
 
-const BASEs_URL = 'http://127.0.0.1:8000';
+const BASEs_URL = 'https://fasalcheekodeserver.herokuapp.com';
 const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
   ssr: false
 });
@@ -23,15 +23,13 @@ export const getStaticPaths = async () =>{
 
     return {
         paths,
-        fallback:true,
+        fallback:false,
     }
 }
 export const getStaticProps = async ({params}) => {
     const slug = params.slug;
-    // console.log(slug)
     const res = await fetch(`${BASEs_URL}/posts/${slug}/`);
     const data = await res.json();
-    // console.log("eee:::::",res.status)
     return {
         props: { post: data ,status:res.status},
         revalidate:10  
@@ -107,24 +105,23 @@ const Details = ({ post,status })=>{
         if (postimage){
             form_data.append("image", postimage?.image?.[0]);
             console.log(postimage?.image?.[0])
-        }//else{
-        //     form_data.append("image",image)
-        // }
+        }
         form_data.append("title", title);       
         form_data.append("body", body);
         authRequest.patch(`/posts/${post?.slug}/`,form_data,{
-          timeout:12000,  /// Is the main
+          timeout:12000,
           headers: {
             'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
           }
         })
             .then(res => {
-              console.log(res.data);
               let slug = res.data.slug
-              console.log(slug)
               router.push(`/posts/${slug}`)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                router.push('/posts/')
+                console.log(err)
+            })
     };
     return (
         <>

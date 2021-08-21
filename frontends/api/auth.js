@@ -1,8 +1,5 @@
 import axios from 'axios';
-//import 'window.localStorage-polyfill';
-// this base url will be change based on
-// if you need to point to production.
-const BASE_URL = "http://localhost:8000"
+const BASE_URL = "https://fasalcheekodeserver.herokuapp.com"
 const ACCESS_TOKEN = 'access_token'
 const REFRESH_TOKEN = 'refresh_token'
 
@@ -17,7 +14,6 @@ let tokenRequest = axios.create({
 const refreshToken = () => {
   if (process.browser){
     const refreshBody = {"refresh": window.localStorage.getItem(REFRESH_TOKEN)}
-    console.log(refreshBody)
     return tokenRequest.post(`/api/token/access/`, refreshBody)
       .then((response)=> {
         window.localStorage.setItem(ACCESS_TOKEN, response.data.access);
@@ -32,33 +28,18 @@ const isCorrectRefreshError = (status) => {
   return status === 401;
 }
 
-/*
- * authRequest
- *
- * This refreshes the request and retries the token if it is invalid.
- * This is what you use to create any requests that need the Tokens.
- * Reference: https://hackernoon.com/110percent-complete-jwt-authentication-with-django-and-react-2020-iejq34ta
- *
- * Example:
- *     authRequest.get('/path/to/endpoint/',extraParameters)
- *        .then(response=>{
- *          // do something with successful request
- *        }).catch((error)=> {
- *          // handle any errors.
- *        });
-*/
+
 const authRequest = process.browser ? axios.create({
     baseURL: BASE_URL,
     timeout: 50000,
     headers: {
       'Authorization': `Bearer ${window.localStorage.getItem(ACCESS_TOKEN)}`,
-      //'Content-Type': 'application/json',
     }
 }) : {BASE_URL: BASE_URL,timeout: 50};
 if (process.browser){
   authRequest.interceptors.response.use(
-    (response) => response, // this is for all successful requests.
-    (error) => { //handle the request
+    (response) => response,
+    (error) => { 
       return errorInterceptor(error)
     }
   );
@@ -75,7 +56,6 @@ const errorInterceptor = (error) => {
         originalRequest.headers['Authorization'] = headerAuthorization;
         return authRequest(originalRequest)
       }).catch((error)=> {
-        // if token refresh fails, logout the user to avoid potential security risks.
         logoutUser();
         return Promise.reject(error)
       })

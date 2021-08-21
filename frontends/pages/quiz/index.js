@@ -4,20 +4,19 @@ import { UserContext } from '../../contexts/userContext.js'
 import {  useContext } from 'react';
 
 
-const BASE_URL = 'http://127.0.0.1:8000';
+const BASE_URL = 'https://fasalcheekodeserver.herokuapp.com';
 
 export const getStaticProps = async () => {
     const res = await fetch(`${BASE_URL}/quiz/`);
     const data = await res.json();
     return {
         props: { quizzes:  data},
-        revalidate:10
+        revalidate:1
     }
 }
 
 function Home({quizzes}) {
     const {user, setUser, isUserLoggedIn} = useContext(UserContext)
-    console.log(quizzes)
     
   return (
     <div className="blog quiz">
