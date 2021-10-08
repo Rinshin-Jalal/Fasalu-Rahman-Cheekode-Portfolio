@@ -1,7 +1,5 @@
 # 🚀Fasalu Rahman Cheekode's Portfolio Website💻
 
-## 📊Dynamic/Responsive Website🖥️📱📺
-
 ### ⌨️Made with Django Rest Framework and Next.js⌨️
 ---
 
